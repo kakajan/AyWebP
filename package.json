@@ -1,0 +1,36 @@
+{
+  "name": "aywebp",
+  "version": "1.0.0",
+  "description": "Convert images to WebP from the command line",
+  "type": "module",
+  "bin": {
+    "aywebp": "bin/aywebp.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node bin/aywebp.js"
+  },
+  "keywords": [
+    "webp",
+    "cli",
+    "image",
+    "convert"
+  ],
+  "license": "MIT",
+  "author": "kakajan (https://github.com/kakajan)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kakajan/AyWebP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kakajan/AyWebP/issues"
+  },
+  "homepage": "https://github.com/kakajan/AyWebP#readme",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "fast-glob": "^3.3.3",
+    "sharp": "^0.34.2"
+  }
+}
