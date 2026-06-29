@@ -372,15 +372,3 @@ This project is licensed under the [MIT License](LICENSE).
 - GitHub: [@kakajan](https://github.com/kakajan)
 
 If **aywebp** saves you time or disk space, consider giving the repo a star — it helps others discover it.
-
----
-
-## GitHub Pages
-
-This repo includes a landing page in the [`docs/`](docs/) folder.
-
-1. Open **Settings → Pages** on [github.com/kakajan/AyWebP](https://github.com/kakajan/AyWebP)
-2. Under **Build and deployment**, set **Source** to **Deploy from a branch**
-3. Choose branch **`main`**, folder **`/docs`**, then **Save**
-
-Your site will be live at **https://kakajan.github.io/AyWebP/** within a minute or two.
