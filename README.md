@@ -2,6 +2,8 @@
 
 > Fast, zero-config CLI to convert images to WebP — one file or entire folders.
 
+**Website:** [kakajan.github.io/AyWebP](https://kakajan.github.io/AyWebP/)
+
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](https://github.com/kakajan/AyWebP)

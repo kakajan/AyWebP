@@ -27,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/kakajan/AyWebP/issues"
   },
-  "homepage": "https://github.com/kakajan/AyWebP#readme",
+  "homepage": "https://kakajan.github.io/AyWebP/",
   "dependencies": {
     "commander": "^13.1.0",
     "fast-glob": "^3.3.3",

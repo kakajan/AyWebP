@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>aywebp — Fast CLI to convert images to WebP</title>
+  <meta name="description" content="aywebp is a fast, zero-config Node.js CLI to convert JPEG, PNG, GIF, and more to WebP. Batch folders, tune quality, optional delete-source. Works on Windows, macOS, and Linux.">
+  <meta name="author" content="kakajan">
+  <meta name="theme-color" content="#0a0e14">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="aywebp — Fast CLI to convert images to WebP">
+  <meta property="og:description" content="Convert one image or entire folders to WebP from your terminal. Quality control, recursive scans, script-friendly exit codes.">
+  <meta property="og:url" content="https://kakajan.github.io/AyWebP/">
+  <meta property="og:site_name" content="aywebp">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="aywebp — Fast CLI to convert images to WebP">
+  <meta name="twitter:description" content="Convert one image or entire folders to WebP from your terminal. Built with sharp for speed.">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="canonical" href="https://kakajan.github.io/AyWebP/">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#top">
+        <span class="brand-mark">W</span>
+        aywebp
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#install">Install</a></li>
+          <li><a href="#usage">Usage</a></li>
+          <li>
+            <a class="btn btn-primary" href="https://github.com/kakajan/AyWebP" target="_blank" rel="noopener noreferrer">
+              View on GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="hero-badge">Open source · Node.js 18+ · MIT</div>
+          <h1>Convert images to <span>WebP</span> from your terminal</h1>
+          <p class="hero-lead">
+            <strong>aywebp</strong> is a lightweight CLI that turns JPEG, PNG, GIF, TIFF, BMP, and WebP files into optimized <code>.webp</code> images — one file or entire folders, with sensible defaults and full control when you need it.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#install">Get started</a>
+            <a class="btn btn-ghost" href="https://github.com/kakajan/AyWebP#readme" target="_blank" rel="noopener noreferrer">Read the docs</a>
+          </div>
+
+          <div class="install-box">
+            <div class="install-box-header">
+              <span>Quick install</span>
+              <button class="copy-btn" type="button" data-copy="install-cmd">Copy</button>
+            </div>
+            <pre id="install-cmd">git clone https://github.com/kakajan/AyWebP.git
+cd AyWebP && npm install && npm link</pre>
+          </div>
+
+          <div class="hero-meta">
+            <span>Windows · macOS · Linux</span>
+            <span>Powered by sharp</span>
+            <span>Zero config</span>
+          </div>
+        </div>
+
+        <div class="terminal" aria-label="Terminal demo">
+          <div class="terminal-bar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="terminal-title">powershell — aywebp</span>
+          </div>
+          <div class="terminal-body">
+            <div><span class="prompt">$</span> <span class="cmd">aywebp ./photos --recursive -q 85</span></div>
+            <div class="out">Converted: photos/hero.jpg → photos/hero.webp</div>
+            <div class="out">Converted: photos/icons/logo.png → photos/icons/logo.webp</div>
+            <div class="warn">Warning: Skipped (exists): photos/banner.webp</div>
+            <div class="ok">Done: 2 converted, 1 skipped, 0 failed (3 total).</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <div class="container">
+        <span class="section-label">Features</span>
+        <h2 class="section-title">Everything you need, nothing you don't</h2>
+        <p class="section-lead">Built for developers who want smaller images without opening a GUI or writing a script from scratch.</p>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              </div>
+              <h3>Single file or batch</h3>
+            </div>
+            <p>Point aywebp at one image or a whole directory. Perfect for quick saves or bulk asset pipelines.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              </div>
+              <h3>Recursive folders</h3>
+            </div>
+            <p>Use <code>--recursive</code> to walk subdirectories and convert every supported image in one run.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              </div>
+              <h3>Quality control</h3>
+            </div>
+            <p>Default quality is 85. Dial it from 1–100 with <code>-q</code> to balance size and visual fidelity.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Safe by default</h3>
+            </div>
+            <p>Skips existing <code>.webp</code> files unless you pass <code>--force</code>. Originals stay unless you choose <code>--delete-source</code>.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3>Script-friendly</h3>
+            </div>
+            <p>Clear exit codes and a summary line make aywebp easy to plug into CI, npm scripts, and shell pipelines.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3>Blazing fast</h3>
+            </div>
+            <p>Uses <a href="https://sharp.pixelplumbing.com/" target="_blank" rel="noopener noreferrer">sharp</a> under the hood for native-speed encoding on every major platform.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="container">
+        <span class="section-label">Installation</span>
+        <h2 class="section-title">Up and running in three steps</h2>
+        <p class="section-lead">Requires Node.js 18 or newer. npm is included with Node.</p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <h3>Clone the repo</h3>
+            <p>Get the source from GitHub.</p>
+            <pre>git clone https://github.com/kakajan/AyWebP.git
+cd AyWebP</pre>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <h3>Install dependencies</h3>
+            <p>Install packages and link the CLI globally.</p>
+            <pre>npm install
+npm link</pre>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <h3>Verify</h3>
+            <p>Open a new terminal and run your first conversion.</p>
+            <pre>aywebp --version
+aywebp photo.png</pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="usage">
+      <div class="container">
+        <span class="section-label">CLI reference</span>
+        <h2 class="section-title">Simple commands, full control</h2>
+        <p class="section-lead">Output is always written beside the source: <code>photo.jpg</code> becomes <code>photo.webp</code> in the same folder.</p>
+
+        <div class="install-box" style="margin-bottom: 2rem;">
+          <div class="install-box-header">
+            <span>Common commands</span>
+            <button class="copy-btn" type="button" data-copy="usage-cmd">Copy</button>
+          </div>
+          <pre id="usage-cmd">aywebp photo.png
+aywebp ./images --recursive
+aywebp ./assets -q 80 --force
+aywebp ./uploads -d --recursive</pre>
+        </div>
+
+        <div class="options-wrap">
+          <table class="options-table">
+            <thead>
+              <tr>
+                <th>Option</th>
+                <th>Short</th>
+                <th>Default</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>--quality</code></td>
+                <td><code>-q</code></td>
+                <td>85</td>
+                <td>WebP quality from 1 (smallest) to 100 (best)</td>
+              </tr>
+              <tr>
+                <td><code>--recursive</code></td>
+                <td><code>-r</code></td>
+                <td>off</td>
+                <td>Scan subdirectories when path is a folder</td>
+              </tr>
+              <tr>
+                <td><code>--force</code></td>
+                <td><code>-f</code></td>
+                <td>off</td>
+                <td>Overwrite existing <code>.webp</code> output files</td>
+              </tr>
+              <tr>
+                <td><code>--delete-source</code></td>
+                <td><code>-d</code></td>
+                <td>off</td>
+                <td>Delete source after successful conversion</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="formats">
+      <div class="container">
+        <span class="section-label">Formats</span>
+        <h2 class="section-title">Supported input formats</h2>
+        <p class="section-lead">All inputs convert to <code>.webp</code> in the same directory.</p>
+        <div class="format-pills">
+          <span class="format-pill"><strong>.jpg</strong> / .jpeg</span>
+          <span class="format-pill"><strong>.png</strong></span>
+          <span class="format-pill"><strong>.gif</strong></span>
+          <span class="format-pill"><strong>.tif</strong> / .tiff</span>
+          <span class="format-pill"><strong>.bmp</strong></span>
+          <span class="format-pill"><strong>.webp</strong> (re-encode)</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Star it on GitHub</h2>
+          <p>If aywebp saves you time or disk space, a star helps other developers discover it. Issues and pull requests are welcome.</p>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="https://github.com/kakajan/AyWebP" target="_blank" rel="noopener noreferrer">github.com/kakajan/AyWebP</a>
+            <a class="btn btn-ghost" href="https://github.com/kakajan/AyWebP/issues" target="_blank" rel="noopener noreferrer">Report an issue</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>MIT License · Built by <a href="https://github.com/kakajan">@kakajan</a></p>
+      <ul class="footer-links">
+        <li><a href="https://github.com/kakajan/AyWebP">Repository</a></li>
+        <li><a href="https://github.com/kakajan/AyWebP#readme">Documentation</a></li>
+        <li><a href="https://github.com/kakajan/AyWebP/blob/main/LICENSE">License</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
