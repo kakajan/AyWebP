@@ -2,8 +2,9 @@
 
 > Fast, zero-config CLI to convert images to WebP — one file or entire folders.
 
-**Website:** [kakajan.github.io/AyWebP](https://kakajan.github.io/AyWebP/)
+**Website:** [kakajan.github.io/AyWebP](https://kakajan.github.io/AyWebP/) · **npm:** [aywebp](https://www.npmjs.com/package/aywebp)
 
+[![npm version](https://img.shields.io/npm/v/aywebp.svg)](https://www.npmjs.com/package/aywebp)
 [![Node.js](https://img.shields.io/badge/node-%3E%3D18-brightgreen?logo=node.js&logoColor=white)](https://nodejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](https://github.com/kakajan/AyWebP)
@@ -67,7 +68,7 @@ npm install -g aywebp
 aywebp photo.png
 ```
 
-Or install directly from GitHub (no npm registry needed):
+Or install from GitHub:
 
 ```bash
 npm install -g github:kakajan/AyWebP
@@ -97,11 +98,11 @@ Done: 1 converted, 0 skipped, 0 failed (1 total).
 npm install -g aywebp
 ```
 
-> **Note:** The package must be published to npm first. If `npm install -g aywebp` fails, use the GitHub install below or [publish it yourself](#publish-to-npm).
+Available on npm: [npmjs.com/package/aywebp](https://www.npmjs.com/package/aywebp)
 
 ### Install from GitHub
 
-Works immediately without publishing to npm:
+Alternative if you prefer installing from the repository:
 
 ```bash
 npm install -g github:kakajan/AyWebP
@@ -287,10 +288,20 @@ Under the hood:
 
 ```bash
 git clone https://github.com/kakajan/AyWebP.git
-cd aywebp
+cd AyWebP
 npm install
 node bin/aywebp.js path/to/image.png
 npm start -- path/to/image.png
+```
+
+### Releasing to npm
+
+Maintainers: bump the version, publish, and push tags.
+
+```bash
+npm version patch   # or minor / major
+npm publish
+git push && git push --tags
 ```
 
 Project layout:
@@ -348,20 +359,3 @@ This repo includes a landing page in the [`docs/`](docs/) folder.
 3. Choose branch **`main`**, folder **`/docs`**, then **Save**
 
 Your site will be live at **https://kakajan.github.io/AyWebP/** within a minute or two.
-
----
-
-## Publish to npm
-
-The package name **`aywebp`** is reserved in this repo and ready to publish. One-time setup:
-
-```bash
-npm login
-npm publish
-```
-
-After that, anyone can install with:
-
-```bash
-npm install -g aywebp
-```
