@@ -131,6 +131,16 @@
           <article class="feature-card">
             <div class="feature-head">
               <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg>
+              </div>
+              <h3>Resize on convert</h3>
+            </div>
+            <p>Set <code>-W</code> / <code>-H</code> for width or height, or both with <code>--fit</code>. Aspect ratio is preserved by default.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               </div>
               <h3>Safe by default</h3>
@@ -208,8 +218,8 @@ aywebp ./images -r</pre>
           </div>
           <pre id="usage-cmd">aywebp photo.png
 aywebp ./images -r
-aywebp ./assets -q 80 -f
-aywebp ./uploads -d -r</pre>
+aywebp photo.png -W 1200 -H 800
+aywebp ./assets -q 80 -f -d</pre>
         </div>
 
         <div class="options-wrap">
@@ -246,6 +256,30 @@ aywebp ./uploads -d -r</pre>
                 <td><code>-d</code></td>
                 <td>off</td>
                 <td>Delete source after successful conversion</td>
+              </tr>
+              <tr>
+                <td><code>--width</code></td>
+                <td><code>-W</code></td>
+                <td>—</td>
+                <td>Resize to width in pixels</td>
+              </tr>
+              <tr>
+                <td><code>--height</code></td>
+                <td><code>-H</code></td>
+                <td>—</td>
+                <td>Resize to height in pixels</td>
+              </tr>
+              <tr>
+                <td><code>--fit</code></td>
+                <td>—</td>
+                <td>inside</td>
+                <td>When width and height are set: inside, cover, fill, outside</td>
+              </tr>
+              <tr>
+                <td><code>--enlarge</code></td>
+                <td>—</td>
+                <td>off</td>
+                <td>Allow upscaling smaller images</td>
               </tr>
             </tbody>
           </table>

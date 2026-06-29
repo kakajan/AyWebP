@@ -53,6 +53,7 @@ WebP typically shrinks image payloads without a visible quality hit — great fo
 | Single file or batch | Convert one image or every image in a folder |
 | Recursive scan | `-r` / `--recursive` walks subdirectories |
 | Quality control | Default **85**, adjustable from 1–100 |
+| Resize | `-W` / `--width`, `-H` / `--height`, or both with optional `--fit` |
 | Smart skip | Skips when `.webp` already exists (use `--force` to overwrite) |
 | Delete source | Optional `--delete-source` removes originals after success |
 | Re-encode WebP | Re-compress existing `.webp` files with `--force` |
@@ -171,6 +172,12 @@ aywebp ./images --force
 aywebp ./images --delete-source
 aywebp photo.png -d
 
+# Resize (keeps aspect ratio unless both dimensions are set)
+aywebp photo.png -W 1200
+aywebp photo.png -H 800
+aywebp photo.png -W 1200 -H 800
+aywebp photo.png -W 1200 -H 800 --fit cover
+
 # Combine flags
 aywebp ./assets -r -q 80 -f -d
 ```
@@ -185,6 +192,10 @@ aywebp ./assets -r -q 80 -f -d
 | `--recursive` | `-r` | `false` | Scan subdirectories when `<path>` is a folder |
 | `--force` | `-f` | `false` | Overwrite existing `.webp` output files |
 | `--delete-source` | `-d` | `false` | Delete source file after a successful conversion |
+| `--width <pixels>` | `-W` | — | Resize to width; keeps aspect ratio if height is omitted |
+| `--height <pixels>` | `-H` | — | Resize to height; keeps aspect ratio if width is omitted |
+| `--fit <mode>` | — | `inside` | When width and height are both set: `inside`, `cover`, `fill`, or `outside` |
+| `--enlarge` | — | `false` | Allow upscaling images smaller than the target size |
 | `--version` | `-V` | — | Print version and exit |
 | `--help` | `-h` | — | Show help and exit |
 
@@ -209,6 +220,13 @@ Original files are **kept** unless you pass `--delete-source`.
 - Skipped and failed files are **never** deleted.
 - Re-encoding an existing `.webp` (same input/output path) never deletes the file.
 
+### Resize behavior
+
+- **Width only** (`-W 1200`): scales to 1200px wide; height adjusts to keep aspect ratio.
+- **Height only** (`-H 800`): scales to 800px tall; width adjusts to keep aspect ratio.
+- **Both** (`-W 1200 -H 800`): fits within the box using `--fit` (default `inside`); aspect ratio is preserved unless you use `--fit fill`.
+- Images are **not upscaled** by default; pass `--enlarge` to allow enlarging small sources.
+
 ---
 
 ## Examples
@@ -223,6 +241,13 @@ aywebp ~/Pictures/vacation -r --quality 85
 
 ```bash
 aywebp ./public/images -r --delete-source
+```
+
+### Resize images for the web
+
+```bash
+aywebp ./public/images -r -W 1920 -q 85
+aywebp ./thumbnails -r -W 400 -H 400 --fit cover
 ```
 
 ### Re-compress WebP assets for production

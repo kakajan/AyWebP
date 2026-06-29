@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { collectInputs } from '../src/collect-inputs.js';
-import { convertImages, parseQuality } from '../src/convert.js';
+import { convertImages, parseQuality, parseResizeOptions } from '../src/convert.js';
 import { error, info } from '../src/logger.js';
 import { DEFAULT_QUALITY } from '../src/constants.js';
 
@@ -29,10 +29,25 @@ program
   .option('-r, --recursive', 'scan subdirectories (e.g. aywebp ./images -r)', false)
   .option('-f, --force', 'overwrite existing .webp files', false)
   .option('-d, --delete-source', 'delete source file after successful conversion', false)
+  .option('-W, --width <pixels>', 'resize to width in pixels (keeps aspect ratio if height omitted)')
+  .option('-H, --height <pixels>', 'resize to height in pixels (keeps aspect ratio if width omitted)')
+  .option(
+    '--fit <mode>',
+    'when width and height are both set: inside, cover, fill, or outside (default: inside)',
+    'inside',
+  )
+  .option('--enlarge', 'allow upscaling images smaller than the target size', false)
   .action(async (inputPath, options) => {
     let quality;
+    let resize;
     try {
       quality = parseQuality(options.quality);
+      resize = parseResizeOptions({
+        width: options.width,
+        height: options.height,
+        fit: options.fit,
+        enlarge: options.enlarge,
+      });
     } catch (err) {
       error(err instanceof Error ? err.message : String(err));
       process.exit(1);
@@ -50,6 +65,7 @@ program
       quality,
       force: options.force,
       deleteSource: options.deleteSource,
+      resize,
     });
 
     info('');

@@ -22,7 +22,8 @@
     "webp",
     "cli",
     "image",
-    "convert"
+    "convert",
+    "resize"
   ],
   "license": "MIT",
   "author": "kakajan (https://github.com/kakajan)",
