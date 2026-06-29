@@ -26,7 +26,7 @@ program
     `WebP quality (1-100, default: ${DEFAULT_QUALITY})`,
     String(DEFAULT_QUALITY),
   )
-  .option('-r, --recursive', 'scan subdirectories', false)
+  .option('-r, --recursive', 'scan subdirectories (e.g. aywebp ./images -r)', false)
   .option('-f, --force', 'overwrite existing .webp files', false)
   .option('-d, --delete-source', 'delete source file after successful conversion', false)
   .action(async (inputPath, options) => {

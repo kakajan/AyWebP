@@ -51,7 +51,7 @@ WebP typically shrinks image payloads without a visible quality hit — great fo
 | Feature | Description |
 |---------|-------------|
 | Single file or batch | Convert one image or every image in a folder |
-| Recursive scan | `--recursive` walks subdirectories |
+| Recursive scan | `-r` / `--recursive` walks subdirectories |
 | Quality control | Default **85**, adjustable from 1–100 |
 | Smart skip | Skips when `.webp` already exists (use `--force` to overwrite) |
 | Delete source | Optional `--delete-source` removes originals after success |
@@ -158,7 +158,7 @@ aywebp photo.png
 aywebp ./images
 
 # Include subfolders
-aywebp ./images --recursive
+aywebp ./images -r
 
 # Custom quality
 aywebp photo.png --quality 90
@@ -216,19 +216,19 @@ Original files are **kept** unless you pass `--delete-source`.
 ### Optimize a photo library
 
 ```bash
-aywebp ~/Pictures/vacation --recursive --quality 85
+aywebp ~/Pictures/vacation -r --quality 85
 ```
 
 ### Replace PNGs with WebP and remove originals
 
 ```bash
-aywebp ./public/images --recursive --delete-source
+aywebp ./public/images -r --delete-source
 ```
 
 ### Re-compress WebP assets for production
 
 ```bash
-aywebp ./dist/assets --recursive --force --quality 75
+aywebp ./dist/assets -r --force --quality 75
 ```
 
 ### Use in a shell pipeline (exit code check)

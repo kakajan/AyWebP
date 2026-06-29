@@ -50,7 +50,7 @@ export async function collectInputs(inputPath, { recursive = false } = {}) {
     throw new Error(
       recursive
         ? `No supported images found in ${resolved}. Check file extensions.`
-        : `No supported images found in ${resolved}. Try --recursive to scan subdirectories.`,
+        : `No supported images found in ${resolved}. Try -r or --recursive to scan subdirectories.`,
     );
   }
 

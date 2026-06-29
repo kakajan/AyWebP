@@ -81,7 +81,7 @@
             <span class="terminal-title">powershell — aywebp</span>
           </div>
           <div class="terminal-body">
-            <div><span class="prompt">$</span> <span class="cmd">aywebp ./photos --recursive -q 85</span></div>
+            <div><span class="prompt">$</span> <span class="cmd">aywebp ./photos -r -q 85</span></div>
             <div class="out">Converted: photos/hero.jpg → photos/hero.webp</div>
             <div class="out">Converted: photos/icons/logo.png → photos/icons/logo.webp</div>
             <div class="warn">Warning: Skipped (exists): photos/banner.webp</div>
@@ -115,7 +115,7 @@
               </div>
               <h3>Recursive folders</h3>
             </div>
-            <p>Use <code>--recursive</code> to walk subdirectories and convert every supported image in one run.</p>
+            <p>Use <code>-r</code> or <code>--recursive</code> to walk subdirectories and convert every supported image in one run.</p>
           </article>
 
           <article class="feature-card">
@@ -207,9 +207,9 @@ aywebp ./images -r</pre>
             <button class="copy-btn" type="button" data-copy="usage-cmd">Copy</button>
           </div>
           <pre id="usage-cmd">aywebp photo.png
-aywebp ./images --recursive
-aywebp ./assets -q 80 --force
-aywebp ./uploads -d --recursive</pre>
+aywebp ./images -r
+aywebp ./assets -q 80 -f
+aywebp ./uploads -d -r</pre>
         </div>
 
         <div class="options-wrap">
