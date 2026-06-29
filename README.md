@@ -63,7 +63,14 @@ WebP typically shrinks image payloads without a visible quality hit — great fo
 ## Quick start
 
 ```bash
-npm install -g aywebp   # after publishing, or see Installation below
+npm install -g aywebp
+aywebp photo.png
+```
+
+Or install directly from GitHub (no npm registry needed):
+
+```bash
+npm install -g github:kakajan/AyWebP
 aywebp photo.png
 ```
 
@@ -84,18 +91,34 @@ Done: 1 converted, 0 skipped, 0 failed (1 total).
 - [Node.js](https://nodejs.org/) **18** or newer
 - npm (included with Node.js)
 
-### Install globally from source
+### Install from npm (recommended)
+
+```bash
+npm install -g aywebp
+```
+
+> **Note:** The package must be published to npm first. If `npm install -g aywebp` fails, use the GitHub install below or [publish it yourself](#publish-to-npm).
+
+### Install from GitHub
+
+Works immediately without publishing to npm:
+
+```bash
+npm install -g github:kakajan/AyWebP
+```
+
+### Install from source
 
 Clone the repo and link the CLI:
 
 ```bash
 git clone https://github.com/kakajan/AyWebP.git
-cd aywebp
+cd AyWebP
 npm install
 npm link
 ```
 
-Or install globally without linking:
+Or install globally from the cloned folder:
 
 ```bash
 npm install -g .
@@ -313,3 +336,32 @@ This project is licensed under the [MIT License](LICENSE).
 - GitHub: [@kakajan](https://github.com/kakajan)
 
 If **aywebp** saves you time or disk space, consider giving the repo a star — it helps others discover it.
+
+---
+
+## GitHub Pages
+
+This repo includes a landing page in the [`docs/`](docs/) folder.
+
+1. Open **Settings → Pages** on [github.com/kakajan/AyWebP](https://github.com/kakajan/AyWebP)
+2. Under **Build and deployment**, set **Source** to **Deploy from a branch**
+3. Choose branch **`main`**, folder **`/docs`**, then **Save**
+
+Your site will be live at **https://kakajan.github.io/AyWebP/** within a minute or two.
+
+---
+
+## Publish to npm
+
+The package name **`aywebp`** is reserved in this repo and ready to publish. One-time setup:
+
+```bash
+npm login
+npm publish
+```
+
+After that, anyone can install with:
+
+```bash
+npm install -g aywebp
+```

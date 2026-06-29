@@ -63,8 +63,9 @@
               <span>Quick install</span>
               <button class="copy-btn" type="button" data-copy="install-cmd">Copy</button>
             </div>
-            <pre id="install-cmd">git clone https://github.com/kakajan/AyWebP.git
-cd AyWebP && npm install && npm link</pre>
+            <pre id="install-cmd">npm install -g aywebp
+# or from GitHub:
+npm install -g github:kakajan/AyWebP</pre>
           </div>
 
           <div class="hero-meta">
@@ -171,24 +172,23 @@ cd AyWebP && npm install && npm link</pre>
         <div class="steps">
           <div class="step">
             <div class="step-num">01</div>
-            <h3>Clone the repo</h3>
-            <p>Get the source from GitHub.</p>
-            <pre>git clone https://github.com/kakajan/AyWebP.git
-cd AyWebP</pre>
+            <h3>Install globally</h3>
+            <p>From npm (after publish) or directly from GitHub.</p>
+            <pre>npm install -g aywebp
+npm install -g github:kakajan/AyWebP</pre>
           </div>
           <div class="step">
             <div class="step-num">02</div>
-            <h3>Install dependencies</h3>
-            <p>Install packages and link the CLI globally.</p>
-            <pre>npm install
-npm link</pre>
+            <h3>Verify</h3>
+            <p>Open a terminal and check the CLI is on your PATH.</p>
+            <pre>aywebp --version</pre>
           </div>
           <div class="step">
             <div class="step-num">03</div>
-            <h3>Verify</h3>
-            <p>Open a new terminal and run your first conversion.</p>
-            <pre>aywebp --version
-aywebp photo.png</pre>
+            <h3>Convert</h3>
+            <p>Point aywebp at a file or folder.</p>
+            <pre>aywebp photo.png
+aywebp ./images -r</pre>
           </div>
         </div>
       </div>

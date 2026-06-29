@@ -6,6 +6,12 @@
   "bin": {
     "aywebp": "bin/aywebp.js"
   },
+  "files": [
+    "bin",
+    "src",
+    "LICENSE",
+    "README.md"
+  ],
   "engines": {
     "node": ">=18"
   },
