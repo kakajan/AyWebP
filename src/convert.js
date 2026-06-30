@@ -2,12 +2,9 @@ import path from 'node:path';
 import fs from 'node:fs/promises';
 import sharp from 'sharp';
 import { warn, info } from './logger.js';
+import { outputPathFor } from './list-convertible.js';
 
-function outputPathFor(inputPath) {
-  const dir = path.dirname(inputPath);
-  const stem = path.basename(inputPath, path.extname(inputPath));
-  return path.join(dir, `${stem}.webp`);
-}
+export { outputPathFor };
 
 /**
  * @param {import('sharp').Sharp} pipeline
@@ -31,32 +28,76 @@ async function encodeToWebp(inputPath, outputPath, { quality, resize }) {
 }
 
 /**
+ * @param {string} filePath
+ * @returns {Promise<number | undefined>}
+ */
+async function fileSize(filePath) {
+  try {
+    const stat = await fs.stat(filePath);
+    return stat.size;
+  } catch {
+    return undefined;
+  }
+}
+
+/**
  * @param {string[]} inputPaths
  * @param {{
  *   quality: number,
  *   force?: boolean,
  *   deleteSource?: boolean,
  *   resize?: import('sharp').ResizeOptions,
+ *   silent?: boolean,
  * }} options
- * @returns {Promise<{ converted: number, skipped: number, failed: number, deleted: number }>}
  */
 export async function convertImages(inputPaths, {
   quality,
   force = false,
   deleteSource = false,
   resize,
+  silent = false,
 }) {
+  /** @type {Array<{
+   *   input: string,
+   *   output: string,
+   *   status: 'converted' | 'skipped' | 'failed',
+   *   reason?: string,
+   *   error?: string,
+   *   sourceDeleted?: boolean,
+   *   inputBytes?: number,
+   *   outputBytes?: number,
+   * }>} */
+  const files = [];
   let converted = 0;
   let skipped = 0;
   let failed = 0;
   let deleted = 0;
 
+  const logInfo = (message) => {
+    if (!silent) {
+      info(message);
+    }
+  };
+  const logWarn = (message) => {
+    if (!silent) {
+      warn(message);
+    }
+  };
+
   for (const inputPath of inputPaths) {
     const outputPath = outputPathFor(inputPath);
     const samePath = path.resolve(inputPath) === path.resolve(outputPath);
+    const inputBytes = await fileSize(inputPath);
 
     if (samePath && !force) {
-      warn(`Skipped (already WebP): ${inputPath}`);
+      logWarn(`Skipped (already WebP): ${inputPath}`);
+      files.push({
+        input: inputPath,
+        output: outputPath,
+        status: 'skipped',
+        reason: 'already_webp',
+        inputBytes,
+      });
       skipped += 1;
       continue;
     }
@@ -64,7 +105,14 @@ export async function convertImages(inputPaths, {
     try {
       await fs.access(outputPath);
       if (!force) {
-        warn(`Skipped (exists): ${outputPath}`);
+        logWarn(`Skipped (exists): ${outputPath}`);
+        files.push({
+          input: inputPath,
+          output: outputPath,
+          status: 'skipped',
+          reason: 'output_exists',
+          inputBytes,
+        });
         skipped += 1;
         continue;
       }
@@ -80,27 +128,48 @@ export async function convertImages(inputPaths, {
       } else {
         await encodeToWebp(inputPath, outputPath, { quality, resize });
       }
-      info(`Converted: ${inputPath} → ${outputPath}`);
+
+      const outputBytes = await fileSize(outputPath);
+      let sourceDeleted = false;
+
+      logInfo(`Converted: ${inputPath} → ${outputPath}`);
       converted += 1;
 
       if (deleteSource && !samePath) {
         try {
           await fs.unlink(inputPath);
-          info(`Deleted source: ${inputPath}`);
+          logInfo(`Deleted source: ${inputPath}`);
           deleted += 1;
+          sourceDeleted = true;
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
-          warn(`Failed to delete source: ${inputPath} (${message})`);
+          logWarn(`Failed to delete source: ${inputPath} (${message})`);
         }
       }
+
+      files.push({
+        input: inputPath,
+        output: outputPath,
+        status: 'converted',
+        inputBytes,
+        outputBytes,
+        sourceDeleted,
+      });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
-      warn(`Failed: ${inputPath} (${message})`);
+      logWarn(`Failed: ${inputPath} (${message})`);
+      files.push({
+        input: inputPath,
+        output: outputPath,
+        status: 'failed',
+        error: message,
+        inputBytes,
+      });
       failed += 1;
     }
   }
 
-  return { converted, skipped, failed, deleted };
+  return { converted, skipped, failed, deleted, files };
 }
 
 /**

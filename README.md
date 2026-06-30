@@ -27,6 +27,7 @@ Built with [sharp](https://sharp.pixelplumbing.com/) for speed and reliable cros
 - [Examples](#examples)
 - [Supported formats](#supported-formats)
 - [Exit codes](#exit-codes)
+- [MCP server (AI agents)](#mcp-server-ai-agents)
 - [How it works](#how-it-works)
 - [Development](#development)
 - [Contributing](#contributing)
@@ -59,6 +60,8 @@ WebP typically shrinks image payloads without a visible quality hit — great fo
 | Re-encode WebP | Re-compress existing `.webp` files with `--force` |
 | Clear summary | Reports converted, skipped, failed, and deleted counts |
 | Script-friendly | Meaningful exit codes for CI and shell pipelines |
+| MCP server | `aywebp-mcp` exposes tools for Cursor and other AI agents |
+| JSON output | `--json` flag for structured CLI results |
 
 ---
 
@@ -287,6 +290,50 @@ aywebp ./uploads || echo "Some conversions failed"
 
 ---
 
+## MCP server (AI agents)
+
+Use aywebp from Cursor or other MCP clients via **`aywebp-mcp`**.
+
+```bash
+npm install -g aywebp
+```
+
+Add to Cursor MCP config:
+
+```json
+{
+  "mcpServers": {
+    "aywebp": {
+      "command": "aywebp-mcp",
+      "env": {
+        "AYWEBP_ALLOWED_ROOTS": "D:\\Projects"
+      }
+    }
+  }
+}
+```
+
+### Tools
+
+| Tool | Purpose |
+|------|---------|
+| `convert_images` | Convert file or folder to WebP |
+| `inspect_image` | Read dimensions/format before converting |
+| `list_convertible` | Dry-run: preview what would be processed |
+| `get_version` | Version and supported formats |
+
+Set `AYWEBP_ALLOWED_ROOTS` to comma-separated directories the agent may access. If unset, only `process.cwd()` is allowed.
+
+Full docs: [docs/mcp.md](docs/mcp.md)
+
+### CLI JSON mode
+
+```bash
+aywebp ./images -r --json
+```
+
+---
+
 ## How it works
 
 ```mermaid
@@ -333,12 +380,19 @@ Project layout:
 
 ```text
 aywebp/
-├── bin/aywebp.js       # CLI entry point
+├── bin/
+│   ├── aywebp.js       # CLI entry point
+│   └── aywebp-mcp.js   # MCP server for AI agents
 ├── src/
 │   ├── collect-inputs.js
 │   ├── convert.js
+│   ├── inspect.js
+│   ├── list-convertible.js
+│   ├── run-conversion.js
+│   ├── security.js
 │   ├── constants.js
 │   └── logger.js
+├── docs/mcp.md
 ├── package.json
 └── README.md
 ```

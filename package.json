@@ -1,10 +1,11 @@
 {
   "name": "aywebp",
-  "version": "1.1.0",
-  "description": "Convert images to WebP from the command line",
+  "version": "1.2.0",
+  "description": "Convert images to WebP from the command line and MCP",
   "type": "module",
   "bin": {
-    "aywebp": "bin/aywebp.js"
+    "aywebp": "bin/aywebp.js",
+    "aywebp-mcp": "bin/aywebp-mcp.js"
   },
   "files": [
     "bin",
@@ -23,7 +24,8 @@
     "cli",
     "image",
     "convert",
-    "resize"
+    "resize",
+    "mcp"
   ],
   "license": "MIT",
   "author": "kakajan (https://github.com/kakajan)",
@@ -36,8 +38,10 @@
   },
   "homepage": "https://kakajan.github.io/AyWebP/",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
     "commander": "^13.1.0",
     "fast-glob": "^3.3.3",
-    "sharp": "^0.34.2"
+    "sharp": "^0.34.2",
+    "zod": "^4.4.3"
   }
 }

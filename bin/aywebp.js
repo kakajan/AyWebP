@@ -4,9 +4,14 @@ import { Command } from 'commander';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
-import { collectInputs } from '../src/collect-inputs.js';
-import { convertImages, parseQuality, parseResizeOptions } from '../src/convert.js';
-import { error, info } from '../src/logger.js';
+import {
+  runConversion,
+  getExitCode,
+  printConversionSummary,
+  parseQuality,
+  parseResizeOptions,
+} from '../src/run-conversion.js';
+import { error } from '../src/logger.js';
 import { DEFAULT_QUALITY } from '../src/constants.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -37,6 +42,7 @@ program
     'inside',
   )
   .option('--enlarge', 'allow upscaling images smaller than the target size', false)
+  .option('--json', 'output structured JSON result on stdout', false)
   .action(async (inputPath, options) => {
     let quality;
     let resize;
@@ -53,38 +59,37 @@ program
       process.exit(1);
     }
 
-    let files;
     try {
-      files = await collectInputs(inputPath, { recursive: options.recursive });
+      const result = await runConversion(inputPath, {
+        recursive: options.recursive,
+        quality,
+        force: options.force,
+        deleteSource: options.deleteSource,
+        width: options.width,
+        height: options.height,
+        fit: options.fit,
+        enlarge: options.enlarge,
+        silent: options.json,
+        validatePath: false,
+      });
+
+      if (options.json) {
+        console.log(JSON.stringify(result, null, 2));
+      } else {
+        printConversionSummary(result, { deleteSource: options.deleteSource });
+      }
+
+      process.exit(getExitCode(result));
     } catch (err) {
-      error(err instanceof Error ? err.message : String(err));
+      if (options.json) {
+        console.log(JSON.stringify({
+          error: err instanceof Error ? err.message : String(err),
+        }));
+      } else {
+        error(err instanceof Error ? err.message : String(err));
+      }
       process.exit(1);
     }
-
-    const { converted, skipped, failed, deleted } = await convertImages(files, {
-      quality,
-      force: options.force,
-      deleteSource: options.deleteSource,
-      resize,
-    });
-
-    info('');
-    const deletedPart =
-      options.deleteSource && deleted > 0 ? `, ${deleted} deleted` : '';
-    info(
-      `Done: ${converted} converted, ${skipped} skipped, ${failed} failed${deletedPart} (${files.length} total).`,
-    );
-
-    if (converted === 0 && failed > 0) {
-      process.exit(2);
-    }
-    if (converted === 0 && skipped === files.length) {
-      process.exit(0);
-    }
-    if (failed > 0) {
-      process.exit(2);
-    }
-    process.exit(0);
   });
 
 program.parse();
