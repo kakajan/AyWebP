@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "aywebp": {
+      "command": "npx",
+      "args": ["-y", "aywebp-mcp"],
+      "env": {
+        "AYWEBP_ALLOWED_ROOTS": "D:\\Projects"
+      }
+    }
+  }
+}

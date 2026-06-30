@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "aywebp": {
+      "type": "local",
+      "command": ["aywebp-mcp"],
+      "enabled": true,
+      "environment": {
+        "AYWEBP_ALLOWED_ROOTS": "D:\\Projects"
+      }
+    }
+  }
+}

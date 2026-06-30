@@ -320,6 +320,8 @@ Add to Cursor MCP config — **global** (all projects) or **project** (this repo
 
 Reload Cursor after saving (`Developer: Reload Window`).
 
+More configs (Claude Code, OpenCode, Codex, etc.): **[examples/mcp-configs/](examples/mcp-configs/README.md)**
+
 ### Tools
 
 | Tool | Purpose |

@@ -14,6 +14,12 @@ Or run without global install:
 npx -y aywebp-mcp
 ```
 
+## Configuration examples
+
+Ready-to-copy configs for **Cursor, Claude Code, Claude Desktop, OpenCode, Codex, Windsurf, Cline**, plus npx and Windows variants:
+
+**[examples/mcp-configs/](../examples/mcp-configs/README.md)**
+
 ## Cursor configuration
 
 ### Global (recommended)

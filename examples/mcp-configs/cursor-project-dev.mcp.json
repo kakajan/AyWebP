@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "aywebp": {
+      "command": "node",
+      "args": ["D:\\Projects\\AyWebp\\bin\\aywebp-mcp.js"],
+      "env": {
+        "AYWEBP_ALLOWED_ROOTS": "D:\\Projects\\AyWebp,D:\\Projects"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+# Merge this block into ~/.codex/config.toml (or .codex/config.toml in a trusted project).
+# Docs: https://developers.openai.com/codex/mcp
+
+[mcp_servers.aywebp]
+command = "aywebp-mcp"
+enabled = true
+startup_timeout_sec = 30
+tool_timeout_sec = 120
+
+[mcp_servers.aywebp.env]
+AYWEBP_ALLOWED_ROOTS = "D:\\Projects"
+
+# --- npx variant (no global install) ---
+# [mcp_servers.aywebp]
+# command = "npx"
+# args = ["-y", "aywebp-mcp"]
+# enabled = true
+#
+# [mcp_servers.aywebp.env]
+# AYWEBP_ALLOWED_ROOTS = "D:\\Projects"
+
+# --- Windows npx wrapper (if spawn fails) ---
+# [mcp_servers.aywebp]
+# command = "cmd"
+# args = ["/c", "npx", "-y", "aywebp-mcp"]
+# enabled = true
+#
+# [mcp_servers.aywebp.env]
+# AYWEBP_ALLOWED_ROOTS = "D:\\Projects"

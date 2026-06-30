@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "aywebp": {
+      "type": "stdio",
+      "command": "aywebp-mcp",
+      "env": {
+        "AYWEBP_ALLOWED_ROOTS": "D:\\Projects"
+      }
+    }
+  }
+}
