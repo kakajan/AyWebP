@@ -11,7 +11,8 @@
     "bin",
     "src",
     "LICENSE",
-    "README.md"
+    "README.md",
+    "docs/mcp.md"
   ],
   "engines": {
     "node": ">=18"

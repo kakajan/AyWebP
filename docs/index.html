@@ -33,6 +33,7 @@
         <ul class="nav-links">
           <li><a href="#features">Features</a></li>
           <li><a href="#install">Install</a></li>
+          <li><a href="#mcp">MCP</a></li>
           <li><a href="#usage">Usage</a></li>
           <li>
             <a class="btn btn-primary" href="https://github.com/kakajan/AyWebP" target="_blank" rel="noopener noreferrer">
@@ -287,6 +288,62 @@ aywebp ./assets -q 80 -f -d</pre>
       </div>
     </section>
 
+    <section id="mcp">
+      <div class="container">
+        <span class="section-label">AI / MCP</span>
+        <h2 class="section-title">Use with Cursor, Claude Code, Codex, and more</h2>
+        <p class="section-lead">
+          <code>aywebp-mcp</code> exposes structured tools for AI agents — convert, inspect, and preview images with path sandboxing.
+          Works with any MCP-compatible IDE or CLI.
+        </p>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              </div>
+              <h3>4 MCP tools</h3>
+            </div>
+            <p><code>convert_images</code>, <code>inspect_image</code>, <code>list_convertible</code>, <code>get_version</code></p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3>Path sandbox</h3>
+            </div>
+            <p>Set <code>AYWEBP_ALLOWED_ROOTS</code> so agents only access folders you allow.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-head">
+              <div class="feature-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18M3 9h18"/></svg>
+              </div>
+              <h3>Multi-IDE configs</h3>
+            </div>
+            <p>Ready-to-copy setup for Cursor, Claude Code, OpenCode, Codex, Windsurf, and Cline.</p>
+          </article>
+        </div>
+
+        <div class="install-box" style="margin-top: 2rem;">
+          <div class="install-box-header">
+            <span>Global MCP install</span>
+            <button class="copy-btn" type="button" data-copy="mcp-cmd">Copy</button>
+          </div>
+          <pre id="mcp-cmd">npm install -g aywebp
+# then add aywebp-mcp to your IDE — see examples/mcp-configs/</pre>
+        </div>
+
+        <p class="section-lead" style="margin-top: 1.5rem; margin-bottom: 0;">
+          <a href="https://github.com/kakajan/AyWebP/blob/main/examples/mcp-configs/README.md" target="_blank" rel="noopener noreferrer">MCP config examples</a>
+          ·
+          <a href="https://github.com/kakajan/AyWebP/blob/main/docs/mcp.md" target="_blank" rel="noopener noreferrer">Full MCP docs</a>
+        </p>
+      </div>
+    </section>
+
     <section id="formats">
       <div class="container">
         <span class="section-label">Formats</span>
@@ -323,7 +380,8 @@ aywebp ./assets -q 80 -f -d</pre>
       <ul class="footer-links">
         <li><a href="https://www.npmjs.com/package/aywebp">npm</a></li>
         <li><a href="https://github.com/kakajan/AyWebP">Repository</a></li>
-        <li><a href="https://github.com/kakajan/AyWebP/blob/main/docs/mcp.md">MCP server</a></li>
+        <li><a href="https://github.com/kakajan/AyWebP/blob/main/docs/mcp.md">MCP docs</a></li>
+        <li><a href="https://github.com/kakajan/AyWebP/blob/main/examples/mcp-configs/README.md">MCP configs</a></li>
         <li><a href="https://github.com/kakajan/AyWebP#readme">Documentation</a></li>
         <li><a href="https://github.com/kakajan/AyWebP/blob/main/LICENSE">License</a></li>
       </ul>
