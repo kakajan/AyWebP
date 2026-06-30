@@ -16,14 +16,15 @@ npx -y aywebp-mcp
 
 ## Cursor configuration
 
-Add to your Cursor MCP settings (`Settings → MCP → Edit Config`):
+### Global (recommended)
+
+Create or edit `%USERPROFILE%\.cursor\mcp.json` on Windows (or `~/.cursor/mcp.json` on macOS/Linux):
 
 ```json
 {
   "mcpServers": {
     "aywebp": {
-      "command": "npx",
-      "args": ["-y", "aywebp-mcp"],
+      "command": "aywebp-mcp",
       "env": {
         "AYWEBP_ALLOWED_ROOTS": "D:\\Projects"
       }
@@ -32,22 +33,15 @@ Add to your Cursor MCP settings (`Settings → MCP → Edit Config`):
 }
 ```
 
-After global install:
+This enables aywebp in **every** Cursor workspace. Reload Cursor after saving.
 
-```json
-{
-  "mcpServers": {
-    "aywebp": {
-      "command": "aywebp-mcp",
-      "env": {
-        "AYWEBP_ALLOWED_ROOTS": "D:\\Projects,D:\\Photos"
-      }
-    }
-  }
-}
-```
+### Project-only
 
-Restart Cursor after saving the config.
+Add `.cursor/mcp.json` inside a repo if you want aywebp only for that project.
+
+### Via Settings UI
+
+You can also paste the same JSON in **Settings → MCP → Edit Config**.
 
 ## Path sandbox
 

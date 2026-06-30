@@ -298,7 +298,12 @@ Use aywebp from Cursor or other MCP clients via **`aywebp-mcp`**.
 npm install -g aywebp
 ```
 
-Add to Cursor MCP config:
+Add to Cursor MCP config — **global** (all projects) or **project** (this repo only):
+
+| Scope | File |
+|-------|------|
+| Global | `C:\Users\<you>\.cursor\mcp.json` |
+| Project | `.cursor/mcp.json` in the repo |
 
 ```json
 {
@@ -312,6 +317,8 @@ Add to Cursor MCP config:
   }
 }
 ```
+
+Reload Cursor after saving (`Developer: Reload Window`).
 
 ### Tools
 
