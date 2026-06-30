@@ -145,12 +145,20 @@ img {
 
 .btn-primary {
   background: var(--accent);
-  color: #041008;
+  color: #ffffff;
   box-shadow: 0 4px 20px var(--accent-glow);
 }
 
 .btn-primary:hover {
   background: #4ae598;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.nav-links a.btn-primary,
+.nav-links a.btn-primary:hover {
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .btn-ghost {
